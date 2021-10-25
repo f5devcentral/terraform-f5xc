@@ -1,23 +1,21 @@
-# Solutions Engineering Template Repository
-A template repository that contains all required files (LICENSE, SUPPORT, CONTRIBUTING, etc) as outlined in the org standards.  
-
-
-The sections below are recommended in your project's README.md file. 
+# Terraform plan examples for Volterra
 
 ## Overview
-Provide a short overview of the project.
+In this repository, you will find Terraform plan examples for Volterra deployments.
 
 ## Getting Started
-Provide a quick example of how to use your code.  This should provide the user with a launch point to quickly see what the project can offer them. 
+The Volterra modules are available here : https://registry.terraform.io/providers/volterraedge/volterra/latest
 
-## Installation
-Outline the requirements and steps to install this project. 
+## Pre-Requirements
+Have a Volterra API Certificate. Please see this page for the API Certificate generation: https://volterra.io/docs/how-to/user-mgmt/credentials
 
-## Usage
-Outline how the user can use your project and the various features the project offers. 
+Extract the certificate and the key from the .p12:
 
-## Development
-Outline any requirements to setup a development environment if someone would like to contribute.  You may also link to another file for this information. 
+```
+    openssl pkcs12 -info -in certificate.p12 -out private_key.key -nodes -nocerts
+    openssl pkcs12 -info -in certificate.p12 -out certificate.cert -nokeys
+```
+
 
 ## Support
 For support, please open a GitHub issue.  Note, the code in this repository is community supported and is not supported by F5 Networks.  For a complete list of supported projects please reference [SUPPORT.md](SUPPORT.md).
