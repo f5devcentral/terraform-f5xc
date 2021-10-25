@@ -8,7 +8,7 @@ The Volterra modules are available here : https://registry.terraform.io/provider
 
 ![alt text][logo]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[logo]: https://raw.githubusercontent.com/f5devcentral/terraform-volterra/main/terraform_screen.png "Terraform"
 
 ## Pre-Requirements
 Have a Volterra API Certificate. Please see this page for the API Certificate generation: https://volterra.io/docs/how-to/user-mgmt/credentials
