@@ -6,6 +6,10 @@ In this repository, you will find Terraform plan examples for Volterra deploymen
 ## Getting Started
 The Volterra modules are available here : https://registry.terraform.io/providers/volterraedge/volterra/latest
 
+![alt text][logo]
+
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+
 ## Pre-Requirements
 Have a Volterra API Certificate. Please see this page for the API Certificate generation: https://volterra.io/docs/how-to/user-mgmt/credentials
 
