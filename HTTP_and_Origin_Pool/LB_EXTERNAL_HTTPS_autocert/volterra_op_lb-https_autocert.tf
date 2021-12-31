@@ -52,6 +52,7 @@ namespace = "VOLTERRA_NS"
     add_hsts = true
     http_redirect = true
     no_mtls = true
+    enable_path_normalize = true
     tls_config {
         default_security = true
       }
@@ -71,6 +72,8 @@ no_service_policies = true
 no_challenge = true
 disable_rate_limit = true
 disable_waf = true
+multi_lb_app = true
+user_id_client_ip = true
 //End of mandatory "Security configuration"
 //Mandatory "Load Balancing Control"
 source_ip_stickiness = true
