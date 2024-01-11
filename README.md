@@ -20,8 +20,8 @@ Have a Volterra API Certificate. Please see this page for the API Certificate ge
 Extract the certificate and the key from the .p12:
 
 ```
-    openssl pkcs12 -info -in certificate.p12 -out private_key.key -nodes -nocerts
-    openssl pkcs12 -info -in certificate.p12 -out certificate.cert -nokeys
+    openssl pkcs12 -info -in certificate.p12 -out private_key.key -nodes -nocerts -legacy
+    openssl pkcs12 -info -in certificate.p12 -out certificate.cert -nokeys -legacy
 ```
 
 
