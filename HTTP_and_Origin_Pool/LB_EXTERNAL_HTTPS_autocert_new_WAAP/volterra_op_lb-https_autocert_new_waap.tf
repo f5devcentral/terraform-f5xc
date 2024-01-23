@@ -1,10 +1,9 @@
 //==========================================================================
-//Definition of the Origin, 1-origin.tf
-//Start of the TF file
+//Definition of the Origin Pool
 resource "volterra_origin_pool" "op-ip-internal" {
   name                   = "op-ip-internal"
   //Name of the namespace where the origin pool must be deployed
-  namespace              = "VOLTERRA_NS"
+  namespace              = "NS"
  
    origin_servers {
 
@@ -18,16 +17,15 @@ resource "volterra_origin_pool" "op-ip-internal" {
 
   no_tls = true
   port = "80"
-  endpoint_selection     = "LOCALPREFERED"
+  endpoint_selection     = "LOCAL_PREFERRED"
   loadbalancer_algorithm = "LB_OVERRIDE"
 }
-//End of the file
 //==========================================================================
 
 //Definition of the WAAP Policy
 resource "volterra_app_firewall" "waap-tf" {
-  name      = "WAAP_POLICY_TO_CREATE"
-  namespace = "VOLTERRA_NS"
+  name      = "waap-tf"
+  namespace = "NS"
 
   // One of the arguments from this list "allow_all_response_codes allowed_response_codes" must be set
   allow_all_response_codes = true
@@ -46,17 +44,16 @@ resource "volterra_app_firewall" "waap-tf" {
 }
 
 //==========================================================================
-//Definition of the Load-Balancer, 2-https-lb.tf
-//Start of the TF file
+//Definition of the Load-Balancer
 resource "volterra_http_loadbalancer" "lb-https-tf" {
   depends_on = [volterra_origin_pool.op-ip-internal]
   //Mandatory "Metadata"
   name      = "lb-https-tf"
   //Name of the namespace where the origin pool must be deployed
-  namespace = "VOLTERRA_NS"
+  namespace = "NS"
   //End of mandatory "Metadata" 
   //Mandatory "Basic configuration" with Auto-Cert 
-  domains = ["mypublic.appfqdn.com"]
+  domains = ["FQDN"]
   https_auto_cert {
     add_hsts = true
     http_redirect = true
@@ -69,7 +66,7 @@ resource "volterra_http_loadbalancer" "lb-https-tf" {
   default_route_pools {
       pool {
         name = "op-ip-internal"
-        namespace = "VOLTERRA_NS"
+        namespace = "NS"
       }
       weight = 1
     }
@@ -82,8 +79,8 @@ resource "volterra_http_loadbalancer" "lb-https-tf" {
   disable_rate_limit = true
   //WAAP Policy reference, created earlier in this plan - refer to the same name
   app_firewall {
-    name = "WAAP_POLICY_TO_CREATE"
-    namespace = "VOLTERRA_NS"
+    name = "waap-tf"
+    namespace = "NS"
   }
   multi_lb_app = true
   user_id_client_ip = true
@@ -94,5 +91,4 @@ resource "volterra_http_loadbalancer" "lb-https-tf" {
   
 }
 
-//End of the file
 //==========================================================================
